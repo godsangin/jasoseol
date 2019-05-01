@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:background="@drawable/border"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
+        android:padding="8dp"
         android:id="@+id/myImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:src="@drawable/ic_android_black_24dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -15,7 +21,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/myImage">
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/myImage"
+        android:padding="4dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/company_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SSG닷컴"
+            android:textSize="20sp"
+            android:textColor="#444"/>
+        <TextView
+            android:id="@+id/company_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:text="사무전문직"/>
+        <TextView
+            android:id="@+id/until"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="~03월 12일 23시 59분"/>
     </LinearLayout>
+    <ImageView
+        android:id="@+id/favorite_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="4dp"
+        android:src="@drawable/ic_star_gray_24dp"/>
 </android.support.constraint.ConstraintLayout>
