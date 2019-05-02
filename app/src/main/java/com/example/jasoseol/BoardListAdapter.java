@@ -76,7 +76,7 @@ public class BoardListAdapter extends BaseAdapter {
 //        });
 //
 //        return view;
-        ViewHolder holder;
+        final ViewHolder holder;
 
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.board_item, parent, false);
@@ -85,6 +85,7 @@ public class BoardListAdapter extends BaseAdapter {
             holder.myImage = convertView.findViewById(R.id.myImage);
             holder.cPosition = convertView.findViewById(R.id.company_position);
             holder.until = convertView.findViewById(R.id.until);
+            holder.favorite = convertView.findViewById(R.id.favorite_bt);
             Log.d("holder.title==", holder.title + "");
             convertView.setTag(holder);
         } else {
@@ -92,10 +93,25 @@ public class BoardListAdapter extends BaseAdapter {
         }
 
         holder.title.setText(board.getTitle());
-        setImageView(holder.myImage, board.getImgURL());
+//        setImageView(holder.myImage, board.getImgURL());
+        ImageDownloader imageDownloader = new ImageDownloader();
+        imageDownloader.download(board.getImgURL(), holder.myImage);
         holder.cPosition.setText(board.getPosition());
         holder.cPosition.setSelected(true);
         holder.until.setText(board.getUntil());
+        holder.favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(board.isFavorite()){
+                    holder.favorite.setColorFilter(Color.parseColor("#BEBEBE"), PorterDuff.Mode.SRC_IN);
+                    board.setFavorite(false);
+                }
+                else {
+                    holder.favorite.setColorFilter(Color.parseColor("#ffd700"), PorterDuff.Mode.SRC_IN);
+                    board.setFavorite(true);
+                }
+            }
+        });
 
         return convertView;
 
@@ -140,5 +156,6 @@ public class BoardListAdapter extends BaseAdapter {
         TextView title;
         TextView cPosition;
         TextView until;
+        ImageView favorite;
     }
 }
